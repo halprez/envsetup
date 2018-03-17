@@ -1,15 +1,16 @@
 #!/usr/bin/env bash
 
-# Install iTerm2
-brew cask install iterm2
-
 # Install Homebrew.
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 # Install my shell stuff (zsh, ohmyzsh and my theme)
 brew install zsh zsh-completions
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-cp .halprez.zsh-theme ~/.oh-my-zsh/themes/halprez.zsh-theme
+
+# Set my custom oh-my-zsh theme
+curl -fsSL https://raw.github.com/halprez/myshelltheme/master/halprez.zsh-theme > theme && mv theme ~/.oh-my-zsh/themes/halprez.zsh-theme
+
+# copy zshrc
 cp .zshrc ~/
 
 # make zsh my default shell
@@ -23,9 +24,13 @@ brew install terminal-notifier
 brew tap domt4/autoupdate
 brew autoupdate --start --upgrade --cleanup --enable-notifications
 
+# Install iTerm2
+brew cask install iterm2
+
 # Install brew essentials.
 brew install git
 brew install ack
+brew install mas
 
 # Install download utilities
 brew install wget
