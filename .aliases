@@ -1,0 +1,28 @@
+function battery
+  pmset -g batt | egrep "([0-9]+\%).*" -o --colour=auto | cut -f1 -d';'
+  pmset -g batt | egrep "([0-9]+\%).*" -o --colour=auto | cut -f3 -d';'
+end
+
+function cpu
+  sysctl -n machdep.cpu.brand_string
+end
+
+function pubip
+  dig +short myip.opendns.com @resolver1.opendns.com
+end
+
+function localip
+  ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p'
+end
+
+function dnsserver
+  nslookup google.com | grep Server
+end
+
+function ss
+  open /System/Library/Frameworks/ScreenSaver.framework/Versions/A/Resources/ScreenSaverEngine.app
+end
+
+function lock
+  /System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend
+end
